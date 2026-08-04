@@ -48,15 +48,3 @@
         color: var(--primary-color) 
       
       }
-
-      a#logo_uberspace {
-        background-image: url(../images/uberspace_badge_light.svg);
-        display: block;
-        margin: 0 auto;
-        max-width: 15dvh;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-color: var(--background-color);
-        aspect-ratio: 1 / 1;
-        object-fit:cover;
-        }
