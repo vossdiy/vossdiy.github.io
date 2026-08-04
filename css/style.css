@@ -1,0 +1,62 @@
+      
+      :root{
+        --primary-color: #008cba;
+        --background-color: #222;
+        --primary-font: "Verdana', sans-serif;"
+
+      }
+
+      h1 {
+        color: var(--primary-color);
+        font-size: clamp(2rem, 10vw, 5rem);
+        text-decoration: none;
+        font-family: var(--primary-font);      
+
+        }
+
+      h2 {
+        font-size: 2.0rem;
+        text-decoration: none;
+        font-family: var(--primary-font);      
+
+      }
+
+      body {
+        background-color: var(--background-color);
+        color: rgba(255, 255, 255, 0.85);
+        font-family: var(--primary-font);      
+        text-align: center;
+        margin: 2em;
+        
+          p {
+        font-size: 2.0rem;
+      }  
+
+        }
+
+        footer
+       {
+        p{
+          font-size: 1rem;
+          font-family: var(--primary-font);      
+
+        }}
+
+      a { 
+        font-size: 2rem;
+        font-family: var(--primary-font);      
+        color: var(--primary-color) 
+      
+      }
+
+      a#logo_uberspace {
+        background-image: url(../images/uberspace_badge_light.svg);
+        display: block;
+        margin: 0 auto;
+        max-width: 15dvh;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: var(--background-color);
+        aspect-ratio: 1 / 1;
+        object-fit:cover;
+        }

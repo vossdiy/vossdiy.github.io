@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hanseatic Bank Kontoauszug → CSV</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Hanseatic Bank Kontoauszug → CSV</h1>
+      <p class="subtitle">
+        Wandelt PDF-Kontoauszüge Ihrer Hanseatic Bank Kreditkarte in eine CSV-Datei mit den
+        Einzelumsätzen um.
+      </p>
+    </header>
+
+    <section class="privacy-notice" aria-label="Datenschutzhinweis">
+      <strong>Datenschutz:</strong> Diese Seite läuft vollständig in Ihrem Browser. Ihre PDF-Datei
+      wird <strong>nicht</strong> hochgeladen, nicht an einen Server übertragen und nirgendwo
+      gespeichert. Die gesamte Verarbeitung (Lesen des PDFs, Erkennung der Umsätze, Erzeugung der
+      CSV-Datei) findet lokal auf Ihrem Gerät statt. Nach dem Schließen oder Neuladen der Seite
+      sind alle Daten weg.
+    </section>
+
+    <section
+      id="dropzone"
+      class="dropzone"
+      tabindex="0"
+      role="button"
+      aria-label="PDF-Kontoauszug auswählen oder hierher ziehen"
+    >
+      <p><strong>PDF-Kontoauszug hierher ziehen</strong> oder klicken, um eine Datei auszuwählen.</p>
+      <p class="hint">Unterstützt: Kreditkarten-Kontoauszüge der Hanseatic Bank (GenialCard u. a.)</p>
+      <input id="file-input" type="file" accept="application/pdf,.pdf" hidden />
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <section id="result" class="result" hidden>
+      <p id="summary" class="summary"></p>
+      <div class="table-wrap">
+        <table id="preview-table">
+          <thead>
+            <tr>
+              <th>Buchungsdatum</th>
+              <th>Transaktionsdatum</th>
+              <th>Beschreibung</th>
+              <th>Betrag in €</th>
+              <th>Kontoauszugsnr.</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button id="download-btn" type="button">CSV herunterladen</button>
+    </section>
+
+    <footer>
+      <p>
+        Inoffizielles Werkzeug, keine Verbindung zur Hanseatic Bank GmbH &amp; Co KG.
+        Quellcode: siehe README.
+      </p>
+    </footer>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
