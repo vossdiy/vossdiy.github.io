@@ -1,30 +1,319 @@
 <!DOCTYPE html>
-
 <html lang="de">
-  <head>
-    <link rel="stylesheet" href="css/style.css">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#DIY — kleine Werkzeuge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f8f9;
+    --surface: #ffffff;
+    --text: #142027;
+    --muted: #56676f;
+    --border: #dde6ea;
+    --primary: #008cba;
+    --primary-dark: #026a8c;
+    --primary-tint: #e3f3f9;
+    --radius: 10px;
+    --serif-line: 1.55;
+  }
 
-        <!-- Favicons Start-->
-        <!-- Für Apple-Geräte -->
-        <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon-180x180.png">
-        <!-- Für Browser -->
-        <link rel="shortcut icon" type="image/x-icon" href="images/icons/favicon-32x32.ico">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/icons/favicon-96x96.png">
-        <!-- Für Windows -->
-        <meta name="msapplication-square310x310logo" content="images/icons/mstile-310x310.png">
-        <meta name="msapplication-TileColor" content="008cba">
-        <!-- Favicons Ende-->
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1417;
+      --surface: #131c21;
+      --text: #e8eef0;
+      --muted: #8fa1a8;
+      --border: #223038;
+      --primary: #35b1d9;
+      --primary-dark: #6fd0ef;
+      --primary-tint: #142931;
+    }
+  }
 
-  </head>
+  :root[data-theme="dark"] {
+    --bg: #0d1417;
+    --surface: #131c21;
+    --text: #e8eef0;
+    --muted: #8fa1a8;
+    --border: #223038;
+    --primary: #35b1d9;
+    --primary-dark: #6fd0ef;
+    --primary-tint: #142931;
+  }
 
-  <body>
-    <h1>#DIY</h1>
-    <h2>links</h2>
-    <a href="/tools/hanseatic-kontoauszug-csv/">PDF-Kontoauszug der Hanseatic Bank in CSV umwandeln</a> <br>
-  </body>
+  * { box-sizing: border-box; }
 
-  <footer>
-    <br>
-    <a href="/notice.html">legal notice</a>
-  </footer>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: var(--primary-dark); }
+  a:focus-visible, button:focus-visible, .tool:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header.site {
+    padding: 28px 0 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand .mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .brand .mark span {
+    color: var(--primary);
+  }
+
+  nav.site-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 0.92rem;
+  }
+
+  nav.site-nav a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  nav.site-nav a:hover { color: var(--primary-dark); }
+
+  main { flex: 1; }
+
+  .hero {
+    padding: 56px 0 40px;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.25;
+    margin: 0 0 14px;
+    max-width: 18ch;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: var(--serif-line);
+    max-width: 46ch;
+    margin: 0;
+  }
+
+  section.tools {
+    padding: 8px 0 48px;
+  }
+
+  section.tools h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+
+  .tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tool {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 20px 22px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .tool:hover {
+    border-color: var(--primary);
+  }
+
+  .tool-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .tool-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+  }
+
+  .tool-arrow {
+    color: var(--primary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+
+  .tool:hover .tool-arrow { transform: translateX(3px); }
+
+  .tool-desc {
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.55;
+    margin-top: 8px;
+    max-width: 60ch;
+  }
+
+  .tool-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .tool-tags span {
+    font-size: 0.76rem;
+    color: var(--primary-dark);
+    background: var(--primary-tint);
+    padding: 3px 9px;
+    border-radius: 100px;
+  }
+
+  .privacy-note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 44px;
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    background: var(--primary-tint);
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .privacy-note strong { color: var(--primary-dark); }
+
+  footer.site {
+    border-top: 1px solid var(--border);
+  }
+
+  footer.site .wrap {
+    padding: 20px 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer.site a {
+    color: var(--muted);
+  }
+
+  footer.site a:hover { color: var(--primary-dark); }
+
+  @media (max-width: 480px) {
+    .brand { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .hero { padding: 40px 0 28px; }
+    .tool { padding: 16px 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <a href="#" class="mark">#<span>DIY</span></a>
+      <nav class="site-nav">
+        <a href="#tools">Werkzeuge</a>
+        <a href="notice.html">Impressum</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Kleine Werkzeuge für wiederkehrende, lästige Aufgaben.</h1>
+      <p>Hier sammle ich kleine Tools, die ein konkretes, kleines Problem lösen — ohne Konto, ohne Server, ohne Schnickschnack.</p>
+    </section>
+
+    <section class="tools" id="tools">
+      <h2>Werkzeuge</h2>
+      <div class="tool-list">
+        <a class="tool" href="tools/hanseatic-kontoauszug-csv/">
+          <div class="tool-head">
+            <span class="tool-title">Hanseatic Bank Kontoauszug → CSV</span>
+            <span class="tool-arrow">→</span>
+          </div>
+          <p class="tool-desc">Wandelt PDF-Kontoauszüge der Hanseatic Bank Kreditkarte (z. B. GenialCard) in eine CSV-Datei mit den einzelnen Umsätzen um. Datei per Drag &amp; Drop ablegen oder auswählen.</p>
+          <div class="tool-tags">
+            <span>läuft im Browser</span>
+            <span>PDF → CSV</span>
+            <span>inoffiziell</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="privacy-note">
+        <span>🔒</span>
+        <span><strong>Datenschutz:</strong> Alle Werkzeuge auf dieser Seite laufen vollständig im Browser. Dateien werden nicht hochgeladen, nicht an einen Server übertragen und nirgendwo gespeichert.</span>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>#DIY</span>
+    <a href="notice.html">Impressum / legal notice</a>
+  </div>
+</footer>
+
+</body>
 </html>
